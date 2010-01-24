@@ -6,7 +6,7 @@ class String
     def match(re, i=0)
       str = i>0 ? self[i..-1] : self
       m = str.match_old(re)
-      if blk_given?
+      if block_given?
         yield m
       else
         m
@@ -14,20 +14,22 @@ class String
     end    
   end
 
-  # Pass each match to a block: string.match_all{|match_data| ...}
+  # Pass each match to a block: string.match_all{|match_data| ...}; returns array of block results
   def match_all(re, i=0)
+    result = []
     while r=self.index(re, i)
       match = Regexp.last_match
       i = r + match.to_s.length
-      yield match
+      result << yield(match)
     end
+    result
   end
  
-  # Pass the first match to a block: string.match_one{|match_data| ...}
+  # Pass the first match to a block: string.match_one{|match_data| ...}; returns the block result
   def match_one(re, i=0, &blk)
     match re, i, &blk
   end
- 
+
   # For each substitution, pass the match data to a block that should return substitution value
   def gsub_each(pattern)
     gsub(pattern){|str| yield(Regexp.last_match)}
