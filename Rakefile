@@ -5,12 +5,14 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "modalsupport"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{simple extensions to core classes}
+    gem.description = %Q{additional support extensions to ActiveSupport and HoboSupport}
     gem.email = "jgoizueta@gmail.com"
     gem.homepage = "http://github.com/jgoizueta/modalsupport"
     gem.authors = ["Javier Goizueta"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_dependency "hobosupport"
+    gem.add_dependency "activesupport"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

@@ -1,0 +1,7 @@
+require 'activesupport'
+require 'hobosupport'
+require 'modalsupport/string'
+require 'modalsupport/regexp'
+require 'modalsupport/enumerable'
+require 'modalsupport/file'
+require 'modalsupport/state_equivalent'
