@@ -6,7 +6,7 @@ class String
     def match(re, i=0)
       str = i>0 ? self[i..-1] : self
       m = str.match_old(re)
-      if block_given?
+      if m && block_given?
         yield m
       else
         m

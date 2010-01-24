@@ -6,7 +6,7 @@ class Regexp
     def match(str, i=0)
       str = str[i..-1] if i>0
       m = self.match_old(str)
-      if block_given?
+      if m && block_given?
         yield m
       else
         m
