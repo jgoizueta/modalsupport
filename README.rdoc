@@ -1,6 +1,7 @@
 = modalsupport
 
-Description goes here.
+Some simple Ruby core extensions. This gem requires ActiveSupport and HoboSupport and adds a few additional
+extensions.
 
 == Note on Patches/Pull Requests
  
