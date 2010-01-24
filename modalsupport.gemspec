@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "lib/modalsupport/file.rb",
      "lib/modalsupport/regexp.rb",
      "lib/modalsupport/string.rb",
+     "modalsupport.gemspec",
      "test/helper.rb",
      "test/test_grep.rb",
      "test/test_gsub.rb",
