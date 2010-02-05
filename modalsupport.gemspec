@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{modalsupport}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Javier Goizueta"]
-  s.date = %q{2010-01-24}
+  s.date = %q{2010-02-05}
   s.description = %q{additional support extensions to ActiveSupport and HoboSupport}
   s.email = %q{jgoizueta@gmail.com}
   s.extra_rdoc_files = [
@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
      "test/test_gsub.rb",
      "test/test_match.rb",
      "test/test_relative_path.rb",
+     "test/test_slice.rb",
      "test/test_unindent.rb"
   ]
   s.homepage = %q{http://github.com/jgoizueta/modalsupport}
@@ -47,6 +48,7 @@ Gem::Specification.new do |s|
      "test/test_gsub.rb",
      "test/test_match.rb",
      "test/test_relative_path.rb",
+     "test/test_slice.rb",
      "test/test_unindent.rb"
   ]
 
