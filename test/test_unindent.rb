@@ -22,6 +22,7 @@ class TestUnindent < Test::Unit::TestCase
       Fourh line}
     assert_equal txt, txt.unindent  
   end
+  
   should "remove empty lines at the beginning and end" do
     assert_equal @unindented_text, %{
       First line
@@ -30,6 +31,7 @@ class TestUnindent < Test::Unit::TestCase
       Fourth line
     }.unindent
   end
+  
   should "replace indentation by a given number of spaces" do
     assert_equal @indented_text, %{
       First line
@@ -38,6 +40,7 @@ class TestUnindent < Test::Unit::TestCase
       Fourth line
     }.unindent(4)
   end
+  
   should "replace indentation by a string" do
     assert_equal @indented_text, %{
       First line
