@@ -45,6 +45,11 @@ class TestProduct < Test::Unit::TestCase
         p << pair
       end
       assert_equal result, p
+      
+      assert_equal result, (1..5).each_product_pair(1..3).to_a
+      assert_equal result, (1..5).to_a.each_product_pair(1..3).to_a
+      assert_equal result, (1..5).each_product_pair((1..3).to_a).to_a
+      assert_equal result, (1..5).to_a.each_product_pair((1..3).to_a).to_a
 
     end
 
