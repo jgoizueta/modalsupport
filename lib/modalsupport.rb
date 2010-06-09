@@ -1,5 +1,3 @@
-require 'active_support'
-require 'hobosupport'
 require 'modalsupport/ruby_version'
 require 'modalsupport/ruby_platform'
 require 'modalsupport/ruby_engine'

@@ -1,7 +1,9 @@
 = modalsupport
 
-Some simple Ruby core extensions. This gem requires ActiveSupport and HoboSupport and adds a few additional
-extensions.
+Some simple Ruby core extensions.
+
+To load ActiveSupport and HoboSupport in addition to ModalSupport use:
+  require 'modalsupport/full'
 
 == Note on Patches/Pull Requests
  
