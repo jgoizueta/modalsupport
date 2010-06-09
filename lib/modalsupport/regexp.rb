@@ -1,6 +1,6 @@
 class Regexp
  
-  if RUBY_VERSION < "1.9"
+  if_ruby_version :<, "1.9.0" do
     alias match_old match
     # Modify String#match to work as in Ruby 1.9
     def match(str, i=0)

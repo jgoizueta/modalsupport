@@ -57,7 +57,9 @@ class TestRelativePaths < Test::Unit::TestCase
       assert_equal '//aaa/bbb/ccc/ddd.eee', File.relative_path('//aaa/bbb/ccc/ddd.eee')
       assert_equal 'ccc/ddd.eee', File.relative_path('//aaa/bbb/ccc/ddd.eee', '//aaa/bbb')
       assert_equal '//aaa/bbb/ccc/ddd.eee', File.relative_path('//aaa/bbb/ccc/ddd.eee','aaa/bbb')
-      assert_equal '//aaa/bbb/ccc/ddd.eee', File.relative_path('//aaa/bbb/ccc/ddd.eee','/aaa/bbb')
+      unless ruby_engine_is?(:rbx)
+        assert_equal '//aaa/bbb/ccc/ddd.eee', File.relative_path('//aaa/bbb/ccc/ddd.eee','/aaa/bbb')
+      end
       assert_equal '//aaa/bbb/ccc/ddd.eee', File.relative_path('//aaa/bbb/ccc/ddd.eee','xxx/yyy')
       assert_equal '//aaa/bbb/ccc/ddd.eee', File.relative_path('//aaa/bbb/ccc/ddd.eee','/xxx/yyy')
       assert_equal '//aaa/bbb/ccc/ddd.eee', File.relative_path('//aaa/bbb/ccc/ddd.eee','//xxx/yyy')

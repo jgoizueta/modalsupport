@@ -4,7 +4,7 @@ module Enumerable
     grep(pattern){|str| yield(Regexp.last_match)}
   end
 
-  if RUBY_VERSION < "1.8.7"
+  if_ruby_version :<, "1.8.7" do
     require 'enumerator'
     alias enumerator_each_slice each_slice
     def each_slice(n, &blk)
