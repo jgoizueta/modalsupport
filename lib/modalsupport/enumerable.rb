@@ -29,7 +29,7 @@ module Enumerable
   end
 
   # cartesian product
-  #  note that for Ruby >= 1.8.7 array.each_product_pair(other).to_a == array.product(other)
+  #  note that for Ruby >= 1.8.7 a.each_product_pair(b).to_a == a.to_a.product(b.to_a)
   def each_product_pair(other)
     if block_given?
       self.each do |this|
