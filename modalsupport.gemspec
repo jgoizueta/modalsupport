@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{modalsupport}
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Javier Goizueta"]
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
      "lib/modalsupport/mixins/bracket_constructor.rb",
      "lib/modalsupport/mixins/state_equivalent.rb",
      "lib/modalsupport/regexp.rb",
+     "lib/modalsupport/ruby_version.rb",
      "lib/modalsupport/string.rb",
      "modalsupport.gemspec",
      "test/helper.rb",
