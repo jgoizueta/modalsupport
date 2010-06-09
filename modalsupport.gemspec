@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{modalsupport}
-  s.version = "0.5.0"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Javier Goizueta"]
@@ -37,9 +37,11 @@ Gem::Specification.new do |s|
      "modalsupport.gemspec",
      "test/helper.rb",
      "test/test_bracket_constructor.rb",
+     "test/test_cross_each.rb",
      "test/test_grep.rb",
      "test/test_gsub.rb",
      "test/test_match.rb",
+     "test/test_paralell_each.rb",
      "test/test_product.rb",
      "test/test_relative_path.rb",
      "test/test_slice.rb",
@@ -54,9 +56,11 @@ Gem::Specification.new do |s|
   s.test_files = [
     "test/helper.rb",
      "test/test_bracket_constructor.rb",
+     "test/test_cross_each.rb",
      "test/test_grep.rb",
      "test/test_gsub.rb",
      "test/test_match.rb",
+     "test/test_paralell_each.rb",
      "test/test_product.rb",
      "test/test_relative_path.rb",
      "test/test_slice.rb",
