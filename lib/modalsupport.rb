@@ -1,5 +1,6 @@
 require 'active_support'
 require 'hobosupport'
+require 'modalsupport/ruby_version'
 require 'modalsupport/string'
 require 'modalsupport/regexp'
 require 'modalsupport/enumerable'
