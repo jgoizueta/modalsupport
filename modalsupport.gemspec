@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{modalsupport}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Javier Goizueta"]
-  s.date = %q{2010-02-05}
+  s.date = %q{2010-06-09}
   s.description = %q{additional support extensions to ActiveSupport and HoboSupport}
   s.email = %q{jgoizueta@gmail.com}
   s.extra_rdoc_files = [
@@ -26,29 +26,35 @@ Gem::Specification.new do |s|
      "lib/modalsupport.rb",
      "lib/modalsupport/enumerable.rb",
      "lib/modalsupport/file.rb",
+     "lib/modalsupport/mixins/bracket_constructor.rb",
+     "lib/modalsupport/mixins/state_equivalent.rb",
      "lib/modalsupport/regexp.rb",
      "lib/modalsupport/string.rb",
      "modalsupport.gemspec",
      "test/helper.rb",
+     "test/test_bracket_constructor.rb",
      "test/test_grep.rb",
      "test/test_gsub.rb",
      "test/test_match.rb",
      "test/test_relative_path.rb",
      "test/test_slice.rb",
+     "test/test_state_equivalent.rb",
      "test/test_unindent.rb"
   ]
   s.homepage = %q{http://github.com/jgoizueta/modalsupport}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{simple extensions to core classes}
   s.test_files = [
     "test/helper.rb",
+     "test/test_bracket_constructor.rb",
      "test/test_grep.rb",
      "test/test_gsub.rb",
      "test/test_match.rb",
      "test/test_relative_path.rb",
      "test/test_slice.rb",
+     "test/test_state_equivalent.rb",
      "test/test_unindent.rb"
   ]
 
@@ -57,16 +63,16 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_runtime_dependency(%q<hobosupport>, [">= 0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 0"])
     else
-      s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<hobosupport>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 0"])
     end
   else
-    s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<hobosupport>, [">= 0"])
     s.add_dependency(%q<activesupport>, [">= 0"])
   end
