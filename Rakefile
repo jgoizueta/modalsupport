@@ -10,7 +10,7 @@ begin
     gem.email = "jgoizueta@gmail.com"
     gem.homepage = "http://github.com/jgoizueta/modalsupport"
     gem.authors = ["Javier Goizueta"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_development_dependency "shoulda"
     gem.add_dependency "hobosupport"
     gem.add_dependency "activesupport"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
