@@ -42,107 +42,70 @@ module Enumerable
     end
   end
 
-  if_ruby_version(:<, '1.8.7') do
-    require 'generator'
-    
-    # Paralell iteration through multiple enumerable objects
-    #   (1..3).paralell_each([:a,:b,:c],(10..12)).to_a
-    #    => [[1, :a, 10], [2, :b, 11], [3, :c, 12]]    
-    def paralell_each(*enums)
-      if block_given?
-        iterators = ([self]+enums).map{|e| Generator.new(e)}
-        loop {
-          begin
-            yield iterators.map{|e| e.next}
-          rescue EOFError
-            break
-          end
-        }
-      else
-        enum_for(:paralell_each, *enums)
-      end
+  # Paralell iteration through multiple enumerable objects
+  #   (1..3).paralell_each([:a,:b,:c],(10..12)).to_a
+  #    => [[1, :a, 10], [2, :b, 11], [3, :c, 12]]   
+  # 
+  #   e.paralell_each(*enums) = e.zip(*enums).each
+  def paralell_each(*enums, &blk)
+    # Note that to implement a lazy iterator we'd need
+    # external iterators which don't work in Rubinius, are
+    # implemented differently  in Ruby < 1.8.7 and are slow.
+    # So, for the time being we generate an array and then
+    # iterate it.    
+    if block_given?
+      zip(*enums).each(&blk)
+    else
+      enum_for(:paralell_each, *enums)
     end
-    
-    # Cross-product iteration through multiple enumerable objects
-    #   (1..4).cross_each([:a,:b,:c],(11..12)).to_a
-    #   => [[1, :a, 11], [1, :a, 12], [1, :b, 11], [1, :b, 12], [1, :c, 11], [1, :c, 12],
-    #       [2, :a, 11], [2, :a, 12], [2, :b, 11], [2, :b, 12], [2, :c, 11], [2, :c, 12],
-    #       [3, :a, 11], [3, :a, 12], [3, :b, 11], [3, :b, 12], [3, :c, 11], [3, :c, 12],
-    #       [4, :a, 11], [4, :a, 12], [4, :b, 11], [4, :b, 12], [4, :c, 11], [4, :c, 12]]
-    def cross_each(*enumerables)
-      if block_given?
-        enumerators = ([self]+enumerables).map{|e| Generator.new(e)}
-        values = enumerators.map{|e| e.next rescue nil}
-        yield values.dup
-        i = values.size - 1
-        loop do
-          if enumerators[i].next?
-            values[i] = enumerators[i].next
-            yield values.dup # we could leave dupping up to the user, but .to_a would fail  
-            i = values.size - 1
-          else
-            enumerators[i].rewind
-            values[i] = enumerators[i].next
-            i -= 1
-            if i<0
-              break
-            end
-          end
-        end
-      else
-        enum_for(:cross_each, *enumerables)
-      end
-    end
+  end
   
+  # Equivalent to paralell_each(*enums).to_a, but more efficient
+  def paralell_array(*enums)
+    zip(*enums)
   end
-
-  if_ruby_version(:>=, '1.8.7') do
-    # Paralell iteration through multiple enumerable objects
-    #   (1..3).paralell_each([:a,:b,:c],(10..12)).to_a
-    #    => [[1, :a, 10], [2, :b, 11], [3, :c, 12]]    
-    def paralell_each(*enums)
-      if block_given?
-        iterators = ([self]+enums).map{|e| e.to_enum}
-        loop {
-          yield iterators.map{|e| e.next}
-        }
-      else
-        enum_for(:paralell_each, *enums)
-      end
-    end
-
-    # Cross-product iteration through multiple enumerable objects
-    #   (1..4).cross_each([:a,:b,:c],(11..12)).to_a
-    #   => [[1, :a, 11], [1, :a, 12], [1, :b, 11], [1, :b, 12], [1, :c, 11], [1, :c, 12],
-    #       [2, :a, 11], [2, :a, 12], [2, :b, 11], [2, :b, 12], [2, :c, 11], [2, :c, 12],
-    #       [3, :a, 11], [3, :a, 12], [3, :b, 11], [3, :b, 12], [3, :c, 11], [3, :c, 12],
-    #       [4, :a, 11], [4, :a, 12], [4, :b, 11], [4, :b, 12], [4, :c, 11], [4, :c, 12]]
-    def cross_each(*enumerables)
-      if block_given?
-        enumerators = ([self]+enumerables).map{|e| e.to_enum}
-        values = enumerators.map{|e| e.next rescue nil}
-        yield values.dup
-        i = values.size - 1
-        loop do
-          begin 
-            values[i] = enumerators[i].next
-          rescue StopIteration
-            enumerators[i].rewind
-            values[i] = enumerators[i].next
-            i -= 1
-            if i<0
-              break
-            end
-          else
-            yield values.dup # we could leave dupping up to the user, but .to_a would fail  
-            i = values.size - 1
+  
+  # Cross-product iteration through multiple enumerable objects
+  #   (1..4).cross_each([:a,:b,:c],(11..12)).to_a
+  #   => [[1, :a, 11], [1, :a, 12], [1, :b, 11], [1, :b, 12], [1, :c, 11], [1, :c, 12],
+  #       [2, :a, 11], [2, :a, 12], [2, :b, 11], [2, :b, 12], [2, :c, 11], [2, :c, 12],
+  #       [3, :a, 11], [3, :a, 12], [3, :b, 11], [3, :b, 12], [3, :c, 11], [3, :c, 12],
+  #       [4, :a, 11], [4, :a, 12], [4, :b, 11], [4, :b, 12], [4, :c, 11], [4, :c, 12]]
+  #
+  #  e.cross_each(*enums) = e.to_a.product(*enums.map{|enum| enum.to_a}).each
+  def cross_each(*enumerables)
+    if block_given?
+      enumerable, *rest = enumerables
+      self.each do |e|
+        if enumerables.empty?
+          yield [e]
+        else
+          enumerable.cross_each(*rest) do |rest_e|
+            yield [e]+rest_e
           end
         end
-      else
-        enum_for(:cross_each, *enumerables)
       end
+    else
+      enum_for(:cross_each, *enumerables)
     end
   end
-
+  
+  # equivalent to cross_each(*enumerables).to_a, but more efficient
+  def cross_array(*enumerables) 
+    # return to_a.product(*enumerables.map{|e| e.to_a})
+    enumerables.unshift self
+    result = [[]]
+    while !enumerables.empty?
+      t, result = result, []
+      b, *enumerables = enumerables
+      t.each do |a|
+        b.each do |n|
+          result << a + [n]
+        end
+      end
+    end
+    result
+  end
+  
 
 end
