@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{modalsupport}
-  s.version = "0.6.0"
+  s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Javier Goizueta"]
@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/modalsupport/string.rb",
      "modalsupport.gemspec",
      "test/helper.rb",
+     "test/test_array_index.rb",
      "test/test_bracket_constructor.rb",
      "test/test_cross_each.rb",
      "test/test_grep.rb",
@@ -57,6 +58,7 @@ Gem::Specification.new do |s|
   s.summary = %q{simple extensions to core classes}
   s.test_files = [
     "test/helper.rb",
+     "test/test_array_index.rb",
      "test/test_bracket_constructor.rb",
      "test/test_cross_each.rb",
      "test/test_grep.rb",
