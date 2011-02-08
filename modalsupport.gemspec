@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{modalsupport}
-  s.version = "0.5.2"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Javier Goizueta"]
-  s.date = %q{2010-06-10}
+  s.date = %q{2011-02-08}
   s.description = %q{additional support extensions to ActiveSupport and HoboSupport}
   s.email = %q{jgoizueta@gmail.com}
   s.extra_rdoc_files = [
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/modalsupport.rb",
+     "lib/modalsupport/array.rb",
      "lib/modalsupport/enumerable.rb",
      "lib/modalsupport/file.rb",
      "lib/modalsupport/full.rb",
@@ -44,6 +45,7 @@ Gem::Specification.new do |s|
      "test/test_paralell_each.rb",
      "test/test_product.rb",
      "test/test_relative_path.rb",
+     "test/test_rotate.rb",
      "test/test_slice.rb",
      "test/test_state_equivalent.rb",
      "test/test_unindent.rb"
@@ -51,7 +53,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/jgoizueta/modalsupport}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.6}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{simple extensions to core classes}
   s.test_files = [
     "test/helper.rb",
@@ -63,16 +65,18 @@ Gem::Specification.new do |s|
      "test/test_paralell_each.rb",
      "test/test_product.rb",
      "test/test_relative_path.rb",
+     "test/test_rotate.rb",
      "test/test_slice.rb",
      "test/test_state_equivalent.rb",
-     "test/test_unindent.rb"
+     "test/test_unindent.rb",
+     "test/tstr.rb"
   ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
       s.add_dependency(%q<shoulda>, [">= 0"])
