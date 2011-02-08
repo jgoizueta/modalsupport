@@ -27,4 +27,15 @@ class TestMatch < Test::Unit::TestCase
   
   end
   
+  context "Using the stdlib match method" do
+    
+    should "not be altered by this library" do
+      /a(x+)b/.match("axxxb")
+      assert_equal "xxx", $1
+      "axxxxb".match(/a(x+)b/)
+      assert_equal "xxxx", $1
+    end
+    
+  end
+  
 end
