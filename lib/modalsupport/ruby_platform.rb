@@ -29,5 +29,5 @@ def ruby_platform_is?(platform)
 end
 
 def if_ruby_platform_is(platform)
-  yield if platform_is?(platform)
+  yield if platform_is?(platform) 
 end

@@ -5,6 +5,7 @@ require 'modalsupport/string'
 require 'modalsupport/regexp'
 require 'modalsupport/enumerable'
 require 'modalsupport/file'
+require 'modalsupport/array'
 
 module ModalSupport
 end
