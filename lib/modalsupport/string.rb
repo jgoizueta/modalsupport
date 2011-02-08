@@ -1,19 +1,5 @@
 class String
 
-  if_ruby_version :<, "1.9" do
-    alias match_old match
-    # Modify String#match to work as in Ruby 1.9
-    def match(re, i=0)
-      str = i>0 ? self[i..-1] : self
-      m = str.match_old(re)
-      if m && block_given?
-        yield m
-      else
-        m
-      end
-    end    
-  end
-
   # Pass each match to a block: string.match_all{|match_data| ...}; returns array of block results
   def match_all(re, i=0)
     result = []
@@ -26,8 +12,15 @@ class String
   end
  
   # Pass the first match to a block: string.match_one{|match_data| ...}; returns the block result
-  def match_one(re, i=0, &blk)
-    match re, i, &blk
+  # Similar to Ruby 1.9 match, but does not set the special varialbes $~, $1, etc. in the caller's space.
+  def match_one(re, i=0)
+    str = i>0 ? self[i..-1] : self
+    m = str.match(re)
+    if m && block_given?
+      yield m
+    else
+      m
+    end
   end
 
   # For each substitution, pass the match data to a block that should return substitution value
