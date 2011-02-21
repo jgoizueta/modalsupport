@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{modalsupport}
-  s.version = "0.7.1"
+  s.version = "0.8.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Javier Goizueta"]
-  s.date = %q{2011-02-08}
+  s.date = %q{2011-02-21}
   s.description = %q{additional support extensions to ActiveSupport and HoboSupport}
   s.email = %q{jgoizueta@gmail.com}
   s.extra_rdoc_files = [
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
      "lib/modalsupport/full.rb",
      "lib/modalsupport/mixins/bracket_constructor.rb",
      "lib/modalsupport/mixins/state_equivalent.rb",
+     "lib/modalsupport/recursive_map.rb",
      "lib/modalsupport/regexp.rb",
      "lib/modalsupport/ruby_engine.rb",
      "lib/modalsupport/ruby_platform.rb",
@@ -38,6 +39,7 @@ Gem::Specification.new do |s|
      "modalsupport.gemspec",
      "test/helper.rb",
      "test/test_array_index.rb",
+     "test/test_array_to_h.rb",
      "test/test_bracket_constructor.rb",
      "test/test_cross_each.rb",
      "test/test_grep.rb",
@@ -45,6 +47,7 @@ Gem::Specification.new do |s|
      "test/test_match.rb",
      "test/test_paralell_each.rb",
      "test/test_product.rb",
+     "test/test_recursive_map.rb",
      "test/test_relative_path.rb",
      "test/test_rotate.rb",
      "test/test_slice.rb",
@@ -59,6 +62,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "test/helper.rb",
      "test/test_array_index.rb",
+     "test/test_array_to_h.rb",
      "test/test_bracket_constructor.rb",
      "test/test_cross_each.rb",
      "test/test_grep.rb",
@@ -66,6 +70,7 @@ Gem::Specification.new do |s|
      "test/test_match.rb",
      "test/test_paralell_each.rb",
      "test/test_product.rb",
+     "test/test_recursive_map.rb",
      "test/test_relative_path.rb",
      "test/test_rotate.rb",
      "test/test_slice.rb",

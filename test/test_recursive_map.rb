@@ -5,9 +5,20 @@ class TestRecursiveMap < Test::Unit::TestCase
   context "recursive_map" do
     
     setup do
+      require 'yaml'
       @value_doubler = lambda{|v| v.kind_of?(Numeric) ? v*2 : v}
       @hash_to_array = lambda{|v| v.kind_of?(Hash) ? v.to_a : v}
       @array_to_string = lambda{|v| v.kind_of?(Array) ? v.inspect : v}
+      @string_to_cont_and_double = lambda{|v|
+        case v
+        when String
+          YAML.load(v)
+        when Numeric
+          v*2
+        else
+          v
+        end
+      }
     end
     
     should "process values in containers" do
@@ -68,7 +79,17 @@ class TestRecursiveMap < Test::Unit::TestCase
         )        
       end
     end
-
+    
+    should "recursively process elements transformed to a container" do
+      assert_equal(
+        [222, 444],
+        ModalSupport.recursive_map("[111, 222]", &@string_to_cont_and_double)
+      )
+      assert_equal(
+        [222, 444, [2, 4, 6]],
+        ModalSupport.recursive_map("[111, 222, [1, 2, 3]]", &@string_to_cont_and_double)
+      )
+    end
 
   end
 

@@ -22,7 +22,12 @@ module ModalSupport
     when Array
       blk[container.map{|v| recursive_map(v, &blk)}]
     else
-      blk[container]
+      case mapped = blk[container]
+      when Hash, Array
+        recursive_map(mapped, &blk)
+      else
+        mapped
+      end
     end
   end
   
