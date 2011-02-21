@@ -10,5 +10,6 @@ require 'modalsupport/array'
 module ModalSupport
 end
 
+require 'modalsupport/recursive_map'
 require 'modalsupport/mixins/state_equivalent'
 require 'modalsupport/mixins/bracket_constructor'
