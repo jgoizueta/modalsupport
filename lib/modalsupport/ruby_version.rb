@@ -5,8 +5,15 @@ unless defined? Gem
 end
 
 # Compare the Ruby version with a version string
-def ruby_version?(cmp, v)
-  Gem::Version.create(RUBY_VERSION.dup).send(cmp, Gem::Version.create(v))
+def ruby_version?(cmp, v)  
+  rv =  Gem::Version.create(RUBY_VERSION.dup)
+  v = Gem::Version.create(v)
+  if cmp.to_sym==:'~>'
+    rv = rv.release
+    rv >= v && rv < v.bump
+  else
+    rv.send(cmp,v)
+  end
 end
 
 # ruby_version_between?(v1,v2) == ruby_version?(:>=,v1) && ruby_version?(:<=,v2)
@@ -36,10 +43,9 @@ def if_ruby_version_between_ex(v1, v2)
 end
 
 def ruby_19(&blk)
-  if_ruby_version :>=, '1.9.0', &blk
+  if_ruby_version :'~>', '1.9.0', &blk
 end
 
 def ruby_18(&blk)
-  # if_ruby_version :<, '1.9.0', &blk
-  if_ruby_version_between_ex '1.8.0', '1.9.0'
+  if_ruby_version :'~>', '1.8.0', &blk
 end
