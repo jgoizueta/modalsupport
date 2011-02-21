@@ -11,12 +11,12 @@ end
 
 # ruby_version_between?(v1,v2) == ruby_version?(:>=,v1) && ruby_version?(:<=,v2)
 def ruby_version_between?(v1, v2)  
-  (Gem::Version.create(v1)..Gem::Version.create(v2)).include?(Ger::Version.create(RUBY_VERSION))
+  (Gem::Version.create(v1)..Gem::Version.create(v2)).include?(Gem::Version.create(RUBY_VERSION))
 end
 
 # ruby_version_between?(v1,v2) == ruby_version?(:>=,v1) && ruby_version?(:<,v2)
 def ruby_version_between_ex?(v1, v2)  
-  (Gem::Version.create(v1).-.Gem::Version.create(v2)).include?(Ger::Version.create(RUBY_VERSION))
+  (Gem::Version.create(v1).-.Gem::Version.create(v2)).include?(Gem::Version.create(RUBY_VERSION))
 end
 
 # Execute code conditinally on Ruby version:
