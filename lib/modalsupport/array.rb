@@ -27,4 +27,15 @@ class Array
     end
   end
   
+  # create a hash from an array of [key,value] tuples
+  # you can set default or provide a block just as with Hash::new
+  # Note: if you use [key, value1, value2, value#], hash[key] will
+  # be [value1, value2, value#]
+  def to_h(default=nil, &block)
+    # code by Stefan Rusterholz fixed for Ruby 1.9.2; see http://www.ruby-forum.com/topic/138218
+    hash = block_given? ? Hash.new(&block) : Hash.new(default)
+    each { |(key, *value)| hash[key]=value.size>1 ? value : value.first }
+    hash
+  end
+  
 end
