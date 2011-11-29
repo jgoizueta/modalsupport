@@ -22,3 +22,5 @@ pkg
 *.rbc
 
 ## PROJECT::SPECIFIC
+
+tmp/*
