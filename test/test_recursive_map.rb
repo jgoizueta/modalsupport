@@ -64,7 +64,7 @@ class TestRecursiveMap < Test::Unit::TestCase
         ModalSupport.recursive_map(:a=>11, :b=>22, :d=>[1,2,3], &@array_to_string)        
       )
       assert_same_elements(
-        [[:a, 11], [:b, 22], [:c, [[:x, 100], [:y, 200]]], [:d, [1, 2, 3]]],
+        [[:a, 11], [:b, 22], [:c, {:x=>100,:y=>200}.to_a], [:d, [1, 2, 3]]],
         ModalSupport.recursive_map(:a=>11, :b=>22, :c=>{:x=>100,:y=>200}, :d=>[1,2,3], &@hash_to_array)
       )
       assert_equal(
