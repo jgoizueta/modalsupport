@@ -59,5 +59,20 @@ class String
     lines.join("\n")
   end
   
+  # Remove wrapping characters and external whitespace
+  def unwrap(wrapping)
+    if wrapping.length==1
+      open = close = wrapping
+    else
+      open = wrapping[0,wrapping.length/2]
+      close = wrapping[-wrapping.length/2..-1]
+    end
+    if self.match(/\A\s*#{Regexp.escape(open)}(.*)#{Regexp.escape(close)}\s*\Z/m)
+      $1
+    else
+      self
+    end
+  end
+  
 end
 
