@@ -44,27 +44,27 @@ module Enumerable
 
   # Paralell iteration through multiple enumerable objects
   #   (1..3).paralell_each([:a,:b,:c],(10..12)).to_a
-  #    => [[1, :a, 10], [2, :b, 11], [3, :c, 12]]   
-  # 
+  #    => [[1, :a, 10], [2, :b, 11], [3, :c, 12]]
+  #
   #   e.paralell_each(*enums) = e.zip(*enums).each
   def paralell_each(*enums, &blk)
     # Note that to implement a lazy iterator we'd need
     # external iterators which don't work in Rubinius, are
     # implemented differently  in Ruby < 1.8.7 and are slow.
     # So, for the time being we generate an array and then
-    # iterate it.    
+    # iterate it.
     if block_given?
       zip(*enums).each(&blk)
     else
       enum_for(:paralell_each, *enums)
     end
   end
-  
+
   # Equivalent to paralell_each(*enums).to_a, but more efficient
   def paralell_array(*enums)
     zip(*enums)
   end
-  
+
   # Cross-product iteration through multiple enumerable objects
   #   (1..4).cross_each([:a,:b,:c],(11..12)).to_a
   #   => [[1, :a, 11], [1, :a, 12], [1, :b, 11], [1, :b, 12], [1, :c, 11], [1, :c, 12],
@@ -89,9 +89,9 @@ module Enumerable
       enum_for(:cross_each, *enumerables)
     end
   end
-  
+
   # equivalent to cross_each(*enumerables).to_a, but more efficient
-  def cross_array(*enumerables) 
+  def cross_array(*enumerables)
     # return to_a.product(*enumerables.map{|e| e.to_a})
     enumerables.unshift self
     result = [[]]
@@ -106,6 +106,34 @@ module Enumerable
     end
     result
   end
-  
+
+  unless defined? ::HoboSupport
+
+    def map_with_index(res=[])
+      each_with_index {|x, i| res << yield(x, i)}
+      res
+    end
+
+    def build_hash(res={})
+      each do |x|
+        pair = block_given? ? yield(x) : x
+        res[pair.first] = pair.last if pair
+      end
+      res
+    end
+
+    def map_hash(res={})
+      each do |x|
+        v = yield x
+        res[x] = v
+      end
+      res
+    end
+
+    def rest
+      self[1..-1] || []
+    end
+
+  end # Hobosupport
 
 end
