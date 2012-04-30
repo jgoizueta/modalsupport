@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{modalsupport}
-  s.version = "0.8.3"
+  s.name = "modalsupport"
+  s.version = "0.9.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Javier Goizueta}]
-  s.date = %q{2011-11-29}
-  s.description = %q{additional support extensions to ActiveSupport and HoboSupport}
-  s.email = %q{jgoizueta@gmail.com}
+  s.authors = ["Javier Goizueta"]
+  s.date = "2012-04-30"
+  s.description = "additional support extensions to ActiveSupport and HoboSupport"
+  s.email = "jgoizueta@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.rdoc"
@@ -24,9 +24,12 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/modalsupport.rb",
     "lib/modalsupport/array.rb",
+    "lib/modalsupport/basic_object.rb",
     "lib/modalsupport/enumerable.rb",
     "lib/modalsupport/file.rb",
     "lib/modalsupport/full.rb",
+    "lib/modalsupport/hash.rb",
+    "lib/modalsupport/methodcall.rb",
     "lib/modalsupport/mixins/bracket_constructor.rb",
     "lib/modalsupport/mixins/state_equivalent.rb",
     "lib/modalsupport/recursive_map.rb",
@@ -40,24 +43,29 @@ Gem::Specification.new do |s|
     "test/test_array_index.rb",
     "test/test_array_to_h.rb",
     "test/test_bracket_constructor.rb",
+    "test/test_build_hash.rb",
     "test/test_cross_each.rb",
     "test/test_grep.rb",
     "test/test_gsub.rb",
+    "test/test_map_hash.rb",
+    "test/test_map_with_index.rb",
     "test/test_match.rb",
+    "test/test_methodcall.rb",
     "test/test_paralell_each.rb",
     "test/test_product.rb",
     "test/test_recursive_map.rb",
     "test/test_relative_path.rb",
+    "test/test_rest.rb",
     "test/test_rotate.rb",
     "test/test_slice.rb",
     "test/test_state_equivalent.rb",
     "test/test_unindent.rb",
     "test/test_unwrap.rb"
   ]
-  s.homepage = %q{http://github.com/jgoizueta/modalsupport}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.6}
-  s.summary = %q{simple extensions to core classes}
+  s.homepage = "http://github.com/jgoizueta/modalsupport"
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.23"
+  s.summary = "simple extensions to core classes"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
