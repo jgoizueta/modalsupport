@@ -32,6 +32,21 @@ class TestRecursiveMap < Test::Unit::TestCase
       )
     end
 
+    should "process values with indices in containers" do
+      assert_equal(
+        {:a=>11, :b=>44},
+        ModalSupport.recursive_map(:a=>11, :b=>22){|i,v|
+          i==:b ? v*2 : v
+        }
+      )
+      assert_equal(
+        [11,44],
+        ModalSupport.recursive_map([11,22]){|i,v|
+          i.nil? ? v : (i+1)*v
+        }
+      )
+    end
+
     should "process values in nested containers" do
       assert_equal(
         {:a=>22, :b=>44, :c=>{:x=>200,:y=>400}, :d=>[2,4,6]},
@@ -40,6 +55,21 @@ class TestRecursiveMap < Test::Unit::TestCase
       assert_equal(
         [22, 44, {:c=>{:x=>200,:y=>400}, :d=>[2,4,6]}],
         ModalSupport.recursive_map([11, 22, {:c=>{:x=>100,:y=>200}, :d=>[1,2,3]}], &@value_doubler)
+      )
+    end
+
+    should "process values with indices in nested containers" do
+      assert_equal(
+        {:a=>11, :b=>44, :c=>{:x=>200,:y=>200}, :d=>[1,4,3]},
+        ModalSupport.recursive_map(:a=>11, :b=>22, :c=>{:x=>100,:y=>200}, :d=>[1,2,3]){|i,v|
+          [:x,:b,1].include?(i) ? v*2 : v
+        }
+      )
+      assert_equal(
+        [0, 22, {:c=>{:x=>100,:y=>200}, :d=>[0,2,6]}],
+        ModalSupport.recursive_map([11, 22, {:c=>{:x=>100,:y=>200}, :d=>[1,2,3]}]){|i,v|
+          (i.kind_of?(Numeric) && v.kind_of?(Numeric)) ? i*v : v
+        }
       )
     end
 
