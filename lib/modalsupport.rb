@@ -8,6 +8,7 @@ require 'modalsupport/file'
 require 'modalsupport/array'
 require 'modalsupport/hash'
 require 'modalsupport/basic_object'
+require 'modalsupport/pathname'
 
 module ModalSupport
 end
