@@ -44,7 +44,6 @@ class String
     txt = self.gsub(/\t/, ' '*8)
     mx = txt.scan(/^ *[^\n\r]/).flatten.map{|s| s[-1,1]==' ' ? nil : (s.size-1)}.compact.min
     if mx && mx>0
-      re = Regexp.new('^ {1,'+mx.to_s+"}")
       txt.gsub!(/^ {1,#{mx}}/, "")
     end
     lines = txt.split(/\r?\n/)
